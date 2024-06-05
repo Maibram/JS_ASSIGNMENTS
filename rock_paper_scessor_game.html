@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scessor</title>
+    <style>
+        fieldset{
+            height: 420px;
+            width: 400px;
+            background-color: lightcyan;
+            margin: auto;
+            text-align: center;
+            border-radius: 5%;
+            border-width: 4px;
+            margin-top: 100px;
+        }
+        button{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        label{
+            color: black;
+            font-size: 20px;
+        }
+        #uscore{
+            width: 50%;
+        }
+        #cscore{
+            width: 50%;
+        }
+        #score{
+            display: flex;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <fieldset>
+        <h1>Rock-Paper-Scissor</h1>
+        <br>
+        <button type="submit" style="margin-right: 30px; background-color: aquamarine; font-size:45px;" onclick='findwinner("Rock")'>&#128074</button>
+        <button type="submit" style="background-color: aqua; font-size: 45px;" onclick='findwinner("Paper")'>&#128400</button>
+        <button type="submit" style="margin-left:30px; background-color: bisque; font-size: 45px; rotate: -90deg;" onclick='findwinner("Scissor")'>&#x270C</button>
+        <br><br>
+        <div id="score">
+        <div id="uscore">
+        <label>User's Score</label>
+        <br><br><br>
+        <label id="userChoice">Your Choice</label>
+        <br><br>
+        <label id="userscore">0</label>
+        </div>
+        <div id="cscore">
+        <label>Computer's Score</label>
+        <br><br><br>
+        <label id="computerChoice">Computer's Choice</label>
+        <br><br>
+        <label id="computerscore">0</label>
+        </div>
+        </div>
+        <br><br>
+        <h2 style="background-color: rgb(191, 191, 28); border-radius: 50%;" id="result">GAME STARTED</h2>
+    </fieldset>
+    <script>
+        var computerscore=0;
+        var userscore=0;
+        function findwinner(choice)
+        {
+            var no=Math.random();
+            var computerChoice="";
+            
+            if(no>=0&&no<1/3)
+            {
+                computerChoice="Rock";
+            }
+            else if(no>=1/3 && no<2/3)
+            {
+                computerChoice="Paper";
+            }
+            else if(no>=2/3 && no<=1)
+            {
+                computerChoice="Scissor";
+            }
+            document.getElementById("computerChoice").textContent= computerChoice;
+            document.getElementById("userChoice").textContent= choice;
+
+            let result="";
+            if(computerChoice===choice)
+            {
+                result="It's a tie";
+            }
+            else if(
+                (choice === "Rock" && computerChoice === "Scissor") ||
+                (choice === "Paper" && computerChoice === "Rock") ||
+                (choice === "Scissor" && computerChoice === "Paper")
+            )
+            {
+                result="You Win";
+                userscore++;
+            }
+            else{
+                result="Computer Win";
+                computerscore++;
+            }
+            document.getElementById("result").textContent= result;
+            document.getElementById("computerscore").textContent= computerscore;
+            document.getElementById("userscore").textContent= userscore;
+        }
+        
+    </script>
+</body>
+</html>
